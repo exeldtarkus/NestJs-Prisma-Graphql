@@ -1,0 +1,259 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Post {
+  id: ID!
+  title: String!
+  content: String
+  published: Boolean
+  authorId: Int
+  User: User
+}
+
+type UserCount {
+  Post: Int!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String
+  Post: [Post!]
+  _count: UserCount!
+}
+
+type Query {
+  showAllUser: [User!]!
+  showDetailUser(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]!
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: IntFilter
+  email: StringFilter
+  name: StringNullableFilter
+  Post: PostListRelationFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input PostListRelationFilter {
+  every: PostWhereInput
+  some: PostWhereInput
+  none: PostWhereInput
+}
+
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  content: StringNullableFilter
+  published: BoolNullableFilter
+  authorId: IntNullableFilter
+  User: UserRelationFilter
+}
+
+input BoolNullableFilter {
+  equals: Boolean
+  not: NestedBoolNullableFilter
+}
+
+input NestedBoolNullableFilter {
+  equals: Boolean
+  not: NestedBoolNullableFilter
+}
+
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input UserOrderByWithRelationInput {
+  id: SortOrder
+  email: SortOrder
+  name: SortOrder
+  Post: PostOrderByRelationAggregateInput
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input PostOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input UserWhereUniqueInput {
+  id: Int
+  email: String
+}
+
+enum UserScalarFieldEnum {
+  id
+  email
+  name
+}
+
+type Mutation {
+  insertData(data: UserCreateInput!): User!
+  updateData(updatedOnlyUser: UpdateOneUserWithoutPostArgs!): User!
+  deletedData(deletedUser: DeleteOneUserArgs!): User!
+}
+
+input UserCreateInput {
+  email: String!
+  name: String
+  Post: PostCreateNestedManyWithoutUserInput
+}
+
+input PostCreateNestedManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutUserInput!]
+  createMany: PostCreateManyUserInputEnvelope
+  connect: [PostWhereUniqueInput!]
+}
+
+input PostCreateWithoutUserInput {
+  title: String!
+  content: String
+  published: Boolean
+}
+
+input PostCreateOrConnectWithoutUserInput {
+  where: PostWhereUniqueInput!
+  create: PostCreateWithoutUserInput!
+}
+
+input PostWhereUniqueInput {
+  id: Int
+}
+
+input PostCreateManyUserInputEnvelope {
+  data: [PostCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input PostCreateManyUserInput {
+  id: Int
+  title: String!
+  content: String
+  published: Boolean
+}
+
+input UpdateOneUserWithoutPostArgs {
+  data: UserUpdateWithoutPostInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpdateWithoutPostInput {
+  email: String
+  name: String
+}
+
+input DeleteOneUserArgs {
+  where: UserWhereUniqueInput!
+}
